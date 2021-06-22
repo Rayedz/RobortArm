@@ -16,11 +16,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $engines = ArmEngine::all();
-    return view('systemControl', ['engines' => $engines]);
+    return view('welcome');
 });
 
-Route::post('/system-control/update', function (Request $request) {
+Route::get('/control-panel', function () {
+    $engines = ArmEngine::all();
+    return view('controlPanel', ['engines' => $engines]);
+});
+
+Route::post('/control-panel/update', function (Request $request) {
     $newEnginesData = collect($request->input('engines'));
     $engines = ArmEngine::all();
     foreach ($engines as $engine) {
@@ -30,7 +34,7 @@ Route::post('/system-control/update', function (Request $request) {
     return response()->json(['engines'=> $engines]);
 });
 
-Route::post('/system-control/toggleOnOff', function (Request $request) {
+Route::post('/control-panel/toggleOnOff', function (Request $request) {
     $isOn = $request->input('isOn');
     $engines = ArmEngine::all();
     foreach ($engines as $engine) {
@@ -38,4 +42,9 @@ Route::post('/system-control/toggleOnOff', function (Request $request) {
         $engine->save();
     }
     return response()->json(['engines'=> $engines]);
+});
+
+Route::get('/result-panel', function() {
+    $engines = ArmEngine::all();
+    return view('resultsPanel', ['engines' => $engines]);
 });
