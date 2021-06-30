@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\ArmEngine;
+use App\Models\MotorDirection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,8 @@ Route::get('/', function () {
 
 Route::get('/control-panel', function () {
     $engines = ArmEngine::all();
-    return view('controlPanel', ['engines' => $engines]);
+    $mr = MotorDirection::first();
+    return view('controlPanel', ['engines' => $engines, 'mr' => $mr]);
 });
 
 Route::post('/control-panel/update', function (Request $request) {
@@ -44,7 +46,15 @@ Route::post('/control-panel/toggleOnOff', function (Request $request) {
     return response()->json(['engines'=> $engines]);
 });
 
+Route::post('/control-panel/updateDirection', function (Request $request) {
+    $direction = $request->input('direction');
+    $mr = MotorDirection::first();
+    $mr->update(['direction' => $direction]);
+    return response()->json(['mr'=> $mr]);
+});
+
 Route::get('/result-panel', function() {
     $engines = ArmEngine::all();
-    return view('resultsPanel', ['engines' => $engines]);
+    $mr = MotorDirection::first();
+    return view('resultsPanel', ['engines' => $engines, 'mr' => $mr]);
 });
