@@ -16,7 +16,7 @@
         <div class="flex bg-white items-center justify-between rounded-xl py-4 px-4 md:px-8 shadow-lg">
             <a href="/" class="flex space-x-1 md:space-x-4 items-center text-xl font-extrabold text-teal-800 ">
                 <img src="{{ asset('images/robort.png') }}" class="w-6">
-                <h1 class="hidden md:block">Robort Arm System</h1>
+                <h1 class="hidden md:block">Robot Arm System</h1>
                 <h1 class="md:hidden">RAS</h1>
             </a>
             <div class="font-bold flex-none flex text-sm md:text-base space-x-8">
@@ -30,6 +30,21 @@
         </div>
     </nav>
     @yield('content')
+    <script>
+        window.watsonAssistantChatOptions = {
+            integrationID: "970970ab-609b-4ff2-af9d-e0d8c39e3ad7", // The ID of this integration.
+            region: "eu-gb", // The region your integration is hosted in.
+            serviceInstanceID: "77bba580-d75d-4215-94e8-3b1adceff8ce", // The ID of your service instance.
+            onLoad: function(instance) {
+                instance.render();
+            }
+        };
+        setTimeout(function() {
+            const t = document.createElement('script');
+            t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
+            document.head.appendChild(t);
+        });
+    </script>
 </body>
 
 </html>
