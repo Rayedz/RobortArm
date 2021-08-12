@@ -32,7 +32,7 @@
     @yield('content')
     <script>
         window.watsonAssistantChatOptions = {
-            integrationID: "970970ab-609b-4ff2-af9d-e0d8c39e3ad7", // The ID of this integration.
+            integrationID: "c3998fef-eb55-4433-918a-bf1d6225bbfb", // The ID of this integration.
             region: "eu-gb", // The region your integration is hosted in.
             serviceInstanceID: "77bba580-d75d-4215-94e8-3b1adceff8ce", // The ID of your service instance.
             onLoad: function(instance) {
